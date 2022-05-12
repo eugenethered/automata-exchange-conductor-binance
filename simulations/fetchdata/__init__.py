@@ -1,4 +1,5 @@
 import logging
+import time
 
 from cache.holder.RedisCacheHolder import RedisCacheHolder
 from config.report.holder.ConfigReporterHolder import ConfigReporterHolder
@@ -18,11 +19,16 @@ if __name__ == '__main__':
         'INSTRUMENT_EXCHANGES_KEY': 'binance:exchange:instruments'
     }
 
-    logging.basicConfig(level=logging.INFO)
+    logging.basicConfig(level=logging.DEBUG)
 
     RedisCacheHolder(options)
 
     ConfigReporterHolder(options)
 
+    start_time = time.perf_counter()
+
     conductor = BinanceExchangeConductor(url, options)
     conductor.receive_data()
+
+    end_time = time.perf_counter()
+    print(f"Completed in {end_time - start_time:0.4f} seconds")

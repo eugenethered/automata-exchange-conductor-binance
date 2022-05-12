@@ -3,6 +3,7 @@ import logging
 from conductor.ExchangeConductor import ExchangeConductor
 from conductor.instrument.InstrumentExchangeHandler import InstrumentExchangeHandler
 from conductor.transform.ExchangeTransformer import ExchangeTransformer
+from config.report.holder.ConfigReporterHolder import ConfigReporterHolder
 from core.market.Market import Market
 from exchangerepo.repository.InstrumentExchangeRepository import InstrumentExchangeRepository
 from exchangetransformrepo.repository.ExchangeTransformRepository import ExchangeTransformRepository
@@ -31,3 +32,4 @@ class BinanceExchangeConductor:
     def receive_data(self):
         self.conductor.get_instrument_exchanges()
         logging.info('Instrument exchanges data received complete')
+        ConfigReporterHolder().delay_missing_storing()
