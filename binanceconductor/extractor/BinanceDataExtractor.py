@@ -1,7 +1,7 @@
 import logging
 
 from conductor.extractor.DataExtractor import DataExtractor
-from utility.json_utility import as_data
+from coreutility.collection.dictionary_utility import as_data
 
 
 class BinanceDataExtractor(DataExtractor):
