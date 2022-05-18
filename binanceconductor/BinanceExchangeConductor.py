@@ -15,6 +15,7 @@ from binanceconductor.extractor.BinanceDataExtractor import BinanceDataExtractor
 class BinanceExchangeConductor:
 
     def __init__(self, url, options):
+        self.log = logging.getLogger('Binance Exchange Conductor > BinanceExchangeConductor')
         self.url = url
         self.options = options
         self.conductor = self.init_conductor()
@@ -31,5 +32,5 @@ class BinanceExchangeConductor:
 
     def receive_data(self):
         self.conductor.get_instrument_exchanges()
-        logging.info('Instrument exchanges data received complete')
+        self.log.info('Instrument exchanges data received complete')
         ConfigReporterHolder().delay_missing_storing()
