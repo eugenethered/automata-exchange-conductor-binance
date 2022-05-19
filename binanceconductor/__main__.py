@@ -8,10 +8,10 @@ from logger.ConfigureLogger import ConfigureLogger
 from binanceconductor.BinanceExchangeConductor import BinanceExchangeConductor
 
 
-def main():
+def start():
     ConfigureLogger()
 
-    command_line_arg_parser = url_option_arg_parser()
+    command_line_arg_parser = url_option_arg_parser('persuader-technology-automata-exchange-conductor-binance')
     args = command_line_arg_parser.parse_args()
 
     log = logging.getLogger('Binance Exchange Conductor')
@@ -26,4 +26,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    start()
