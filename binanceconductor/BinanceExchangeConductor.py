@@ -4,33 +4,35 @@ from conductor.ExchangeConductor import ExchangeConductor
 from conductor.instrument.InstrumentExchangeHandler import InstrumentExchangeHandler
 from conductor.transform.ExchangeTransformer import ExchangeTransformer
 from config.report.holder.ConfigReporterHolder import ConfigReporterHolder
-from core.market.Market import Market
 from exchangerepo.repository.InstrumentExchangeRepository import InstrumentExchangeRepository
 from exchangetransformrepo.repository.ExchangeTransformRepository import ExchangeTransformRepository
+from processmanager.ProcessBase import ProcessBase
 
 from binanceconductor.data.BinanceExchangeDataProvider import BinanceExchangeDataProvider
 from binanceconductor.extractor.BinanceDataExtractor import BinanceDataExtractor
 
 
-class BinanceExchangeConductor:
+class BinanceExchangeConductor(ProcessBase):
 
     def __init__(self, url, options):
+        super().__init__(options, 'binance', 'exchange-conductor')
         self.log = logging.getLogger('Binance Exchange Conductor > BinanceExchangeConductor')
         self.url = url
         self.options = options
         self.conductor = self.init_conductor()
 
     def init_conductor(self):
-        market = Market.parse(self.options['MARKET'])
         transform_repository = ExchangeTransformRepository(self.options)
         data_extractor = BinanceDataExtractor()
-        transformer = ExchangeTransformer(market, transform_repository, data_extractor)
+        transformer = ExchangeTransformer(self.market, transform_repository, data_extractor)
         data_provider = BinanceExchangeDataProvider(self.url)
         instrument_exchange_repository = InstrumentExchangeRepository(self.options)
         handler = InstrumentExchangeHandler(instrument_exchange_repository)
         return ExchangeConductor(self.options, transformer, data_provider, handler)
 
+    # todo: closure -> scheduler (process manager)
     def receive_data(self):
+        self.running()
         self.conductor.get_instrument_exchanges()
         self.log.info('Instrument exchanges data received complete')
         ConfigReporterHolder().delay_missing_storing()
