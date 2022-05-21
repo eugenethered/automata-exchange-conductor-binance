@@ -30,9 +30,7 @@ class BinanceExchangeConductor(ProcessBase):
         handler = InstrumentExchangeHandler(instrument_exchange_repository)
         return ExchangeConductor(self.options, transformer, data_provider, handler)
 
-    # todo: closure -> scheduler (process manager)
-    def receive_data(self):
-        self.running()
+    def process_to_run(self):
         self.conductor.get_instrument_exchanges()
         self.log.info('Instrument exchanges data received complete')
         ConfigReporterHolder().delay_missing_storing()
