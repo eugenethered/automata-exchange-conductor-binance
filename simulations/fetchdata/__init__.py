@@ -28,7 +28,7 @@ if __name__ == '__main__':
     start_time = time.perf_counter()
 
     conductor = BinanceExchangeConductor(url, options)
-    conductor.receive_data()
+    conductor.run()
 
     end_time = time.perf_counter()
     print(f"Completed in {end_time - start_time:0.4f} seconds")
