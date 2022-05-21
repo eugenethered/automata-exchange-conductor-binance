@@ -6,13 +6,13 @@ from conductor.transform.ExchangeTransformer import ExchangeTransformer
 from config.report.holder.ConfigReporterHolder import ConfigReporterHolder
 from exchangerepo.repository.InstrumentExchangeRepository import InstrumentExchangeRepository
 from exchangetransformrepo.repository.ExchangeTransformRepository import ExchangeTransformRepository
-from processmanager.ProcessBase import ProcessBase
+from processmanager.ScheduledProcess import ScheduledProcess
 
 from binanceconductor.data.BinanceExchangeDataProvider import BinanceExchangeDataProvider
 from binanceconductor.extractor.BinanceDataExtractor import BinanceDataExtractor
 
 
-class BinanceExchangeConductor(ProcessBase):
+class BinanceExchangeConductor(ScheduledProcess):
 
     def __init__(self, url, options):
         super().__init__(options, 'binance', 'exchange-conductor')

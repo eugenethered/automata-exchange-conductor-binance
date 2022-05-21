@@ -22,7 +22,7 @@ def start():
     ConfigReporterHolder(args.options)
 
     conductor = BinanceExchangeConductor(args.url, args.options)
-    conductor.run()
+    conductor.start_process_schedule()
 
 
 if __name__ == '__main__':
