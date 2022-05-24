@@ -13,10 +13,11 @@ if __name__ == '__main__':
     options = {
         'REDIS_SERVER_ADDRESS': '192.168.1.90',
         'REDIS_SERVER_PORT': 6379,
-        'MARKET': 'binance',
         'EXCHANGE_TRANSFORMATIONS_KEY': 'binance:exchange:transformations',
         'MISSING_KEY': 'binance:missing',
-        'INSTRUMENT_EXCHANGES_KEY': 'binance:exchange:instruments'
+        'INSTRUMENT_EXCHANGES_KEY': 'binance:exchange:instruments',
+        'PROCESS_KEY': '{}:process:status:{}',
+        'PROCESS_RUN_PROFILE_KEY': '{}:process:run-profile:{}'
     }
 
     logging.basicConfig(level=logging.DEBUG)
