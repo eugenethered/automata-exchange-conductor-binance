@@ -7,7 +7,7 @@ from coreutility.collection.dictionary_utility import as_data
 class BinanceDataExtractor(DataExtractor):
 
     def __init__(self):
-        self.log = logging.getLogger('Binance Exchange Conductor > BinanceDataExtractor')
+        self.log = logging.getLogger(__name__)
 
     def extract(self, exchange_instrument_data):
         self.log.debug(f'extracting "symbol" from <- {exchange_instrument_data}')

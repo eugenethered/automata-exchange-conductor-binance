@@ -7,7 +7,7 @@ from conductor.provider.ExchangeDataProvider import ExchangeDataProvider
 class BinanceExchangeDataProvider(ExchangeDataProvider):
 
     def __init__(self, url):
-        self.log = logging.getLogger('Binance Exchange Conductor > BinanceExchangeDataProvider')
+        self.log = logging.getLogger(__name__)
         self.url = url
 
     def fetch_exchange_instruments(self) -> list:
