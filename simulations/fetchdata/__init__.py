@@ -13,7 +13,7 @@ if __name__ == '__main__':
     options = {
         'REDIS_SERVER_ADDRESS': '192.168.1.90',
         'REDIS_SERVER_PORT': 6379,
-        'EXCHANGE_TRANSFORMATIONS_KEY': 'binance:exchange:transformations',
+        'EXCHANGE_TRANSFORMATIONS_KEY': 'binance:transformation:exchange',
         'MISSING_KEY': 'binance:missing',
         'INSTRUMENT_EXCHANGES_KEY': 'binance:exchange:instruments',
         'PROCESS_KEY': '{}:process:status:{}',
