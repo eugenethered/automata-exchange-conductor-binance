@@ -16,7 +16,7 @@ class BinanceExchangeConductor(ScheduledProcess):
 
     def __init__(self, url, options):
         super().__init__(options, 'binance', 'exchange-conductor')
-        self.log = logging.getLogger(__name__)
+        self.log = logging.getLogger('BinanceExchangeConductor')
         self.url = url
         self.options = options
         self.conductor = self.init_conductor()
