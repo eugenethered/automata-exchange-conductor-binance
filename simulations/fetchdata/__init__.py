@@ -2,6 +2,7 @@ import logging
 import time
 
 from cache.holder.RedisCacheHolder import RedisCacheHolder
+from cache.provider.RedisCacheProviderWithHash import RedisCacheProviderWithHash
 from config.report.holder.ConfigReporterHolder import ConfigReporterHolder
 
 from binanceconductor.BinanceExchangeConductor import BinanceExchangeConductor
@@ -16,13 +17,13 @@ if __name__ == '__main__':
         'EXCHANGE_TRANSFORMATIONS_KEY': 'binance:transformation:exchange',
         'MISSING_KEY': 'binance:missing',
         'INSTRUMENT_EXCHANGES_KEY': 'binance:exchange:instruments',
-        'PROCESS_KEY': '{}:process:status:{}',
-        'PROCESS_RUN_PROFILE_KEY': '{}:process:run-profile:{}'
+        'PROCESS_KEY': 'binance:process:mv:status',
+        'PROCESS_RUN_PROFILE_KEY': 'binance:process:mv:run-profile'
     }
 
     logging.basicConfig(level=logging.DEBUG)
 
-    RedisCacheHolder(options)
+    RedisCacheHolder(options, held_type=RedisCacheProviderWithHash)
 
     ConfigReporterHolder(options)
 
