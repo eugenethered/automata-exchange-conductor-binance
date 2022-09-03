@@ -3,9 +3,8 @@ import logging
 from cache.holder.RedisCacheHolder import RedisCacheHolder
 from cache.provider.RedisCacheProviderWithHash import RedisCacheProviderWithHash
 from config.report.holder.ConfigReporterHolder import ConfigReporterHolder
-from core.arguments.command_line_arguments import url_option_arg_parser
+from core.environment.EnvironmentVariables import EnvironmentVariables
 from logger.ConfigureLogger import ConfigureLogger
-from metainfo.MetaInfo import MetaInfo
 
 from binanceconductor.BinanceExchangeConductor import BinanceExchangeConductor
 
@@ -13,19 +12,16 @@ from binanceconductor.BinanceExchangeConductor import BinanceExchangeConductor
 def start():
     ConfigureLogger()
 
-    meta_info = MetaInfo('persuader-technology-automata-exchange-conductor-binance')
-
-    command_line_arg_parser = url_option_arg_parser(meta_info)
-    args = command_line_arg_parser.parse_args()
+    environment_variables = EnvironmentVariables()
 
     log = logging.getLogger('Binance Exchange Conductor')
-    log.info(f'Binance Exchange Conductor starting with URL {args.url} OPTIONS {args.options}')
+    log.info(f'Binance Exchange Conductor starting with URL:{environment_variables.url()}')
 
-    RedisCacheHolder(args.options, held_type=RedisCacheProviderWithHash)
+    RedisCacheHolder(environment_variables.options, held_type=RedisCacheProviderWithHash)
 
-    ConfigReporterHolder(args.options)
+    ConfigReporterHolder(environment_variables.options)
 
-    conductor = BinanceExchangeConductor(args.url, args.options)
+    conductor = BinanceExchangeConductor(environment_variables.url, environment_variables.options)
     conductor.start_process_schedule()
 
 
