@@ -11,5 +11,12 @@ USER apprunner
 WORKDIR /app
 COPY --from=BUILDER /usr/local/lib/python3.10/site-packages/ /usr/local/lib/python3.10/site-packages/
 COPY --chown=apprunner:apprunner ./binanceconductor ./binanceconductor
-ENV PYTHONPATH="${PYTHONPATH}:/app/binanceconductor"
+
+ENV PYTHONPATH="${PYTHONPATH}:/app/binanceconductor" \
+    REDIS_SERVER_ADDRESS=127.0.0.1 \
+    REDIS_SERVER_PORT=6379 \
+    EXCHANGE_TRANSFORMATIONS_KEY=binance:transformation:mv:exchange \
+    MISSING_KEY=binance:mv:missing \
+    INSTRUMENT_EXCHANGES_KEY=binance:exchange:mv:instruments
+
 CMD ["python", "binanceconductor/__main__.py"]
