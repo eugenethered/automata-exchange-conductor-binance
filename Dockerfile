@@ -17,6 +17,9 @@ ENV PYTHONPATH="${PYTHONPATH}:/app/binanceconductor" \
     REDIS_SERVER_PORT=6379 \
     EXCHANGE_TRANSFORMATIONS_KEY=binance:transformation:mv:exchange \
     MISSING_KEY=binance:mv:missing \
-    INSTRUMENT_EXCHANGES_KEY=binance:exchange:mv:instruments
+    INSTRUMENT_EXCHANGES_KEY=binance:exchange:mv:instruments \
+    VERSION=0.1 \
+    PROCESS_RUN_PROFILE_KEY={}:process:run-profile:{} \
+    PROCESS_KEY={}:process:status:{}
 
 CMD ["python", "binanceconductor/__main__.py"]
