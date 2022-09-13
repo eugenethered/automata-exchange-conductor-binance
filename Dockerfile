@@ -19,7 +19,7 @@ ENV PYTHONPATH="${PYTHONPATH}:/app/binanceconductor" \
     MISSING_KEY=binance:mv:missing \
     INSTRUMENT_EXCHANGES_KEY=binance:exchange:mv:instruments \
     VERSION=0.1 \
-    PROCESS_RUN_PROFILE_KEY={}:process:mv:run-profile:{} \
-    PROCESS_KEY={}:process:mv:status:{}
+    PROCESS_RUN_PROFILE_KEY=binance:process:mv:run-profile \
+    PROCESS_KEY=binance:process:mv:status
 
 CMD ["python", "binanceconductor/__main__.py"]
