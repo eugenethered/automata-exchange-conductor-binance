@@ -14,9 +14,9 @@ if __name__ == '__main__':
     options = {
         'REDIS_SERVER_ADDRESS': '192.168.1.90',
         'REDIS_SERVER_PORT': 6379,
-        'EXCHANGE_TRANSFORMATIONS_KEY': 'binance:transformation:exchange',
-        'MISSING_KEY': 'binance:missing',
-        'INSTRUMENT_EXCHANGES_KEY': 'binance:exchange:instruments',
+        'EXCHANGE_TRANSFORMATIONS_KEY': 'binance:transformation:mv:exchange',
+        'MISSING_KEY': 'binance:mv:missing',
+        'INSTRUMENT_EXCHANGES_KEY': 'binance:exchange:mv:instruments',
         'PROCESS_KEY': 'binance:process:mv:status',
         'PROCESS_RUN_PROFILE_KEY': 'binance:process:mv:run-profile'
     }
