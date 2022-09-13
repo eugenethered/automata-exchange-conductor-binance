@@ -21,7 +21,7 @@ def start():
 
     ConfigReporterHolder(environment_variables.options)
 
-    conductor = BinanceExchangeConductor(environment_variables.url, environment_variables.options)
+    conductor = BinanceExchangeConductor(environment_variables.url(), environment_variables.options)
     conductor.start_process_schedule()
 
 
